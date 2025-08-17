@@ -1,0 +1,181 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil Cascadia Mono;}}
+{\colortbl ;\red0\green0\blue255;\red255\green255\blue255;\red0\green0\blue0;\red128\green128\blue128;\red255\green0\blue255;\red255\green0\blue0;\red0\green128\blue0;}
+{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\f0\fs22\lang9 Problem 1:\par
+\cf1\highlight2\f1\fs19 select\cf3  pname Project_name\cf4 ,\cf5 sum\cf4 (\cf1 hours\cf4 )\cf3  \cf1 Hours\cf3\par
+\cf1 from\cf3  Works_for \cf4 ,\cf3 Project\par
+\cf1 where\cf3  pno\cf4 =\cf3 pnumber\par
+\cf1 group\cf3  \cf1 by\cf3  pname\par
+\par
+\cf0\highlight0\f0\fs22 ________________________________________________________________\par
+Problem 2:\par
+\cf1\highlight2\f1\fs19 SELECT\cf3  D\cf4 .*\cf3\par
+\cf1 FROM\cf3  Departments D \cf4 JOIN\cf3  Employee E \par
+\cf1 ON\cf3  D\cf4 .\cf3 Dnum \cf4 =\cf3  E\cf4 .\cf3 Dno\par
+\cf1 WHERE\cf3  E\cf4 .\cf3 SSN \cf4 =\cf1  \cf4 (\cf1 SELECT\cf3  \cf5 MIN\cf4 (\cf3 SSN\cf4 )\cf3  \cf1 FROM\cf3  Employee\cf4 );\cf0\highlight0\f0\fs22\par
+________________________________________________________________\par
+Problem 3:\par
+\cf1\highlight2\f1\fs19 select\cf3  dname\cf4 ,\cf5 max\cf4 (\cf3 salary\cf4 )\cf3  Max_Salary\cf4 ,\cf5 min\cf4 (\cf3 salary\cf4 )\cf3  Min_Salary\cf4 ,\cf5 AVG\cf4 (\cf5 isnull\cf1  \cf4 (\cf3 salary\cf4 ,\cf3 0\cf4 ))\cf3  AVG_Salary\par
+\cf1 from\cf3  Departments \cf4 ,\cf3  Employee\par
+\cf1 where\cf3  Dno\cf4 =\cf3 Dnum\par
+\cf1 group\cf3  \cf1 by\cf3  dname\par
+\par
+\cf0\highlight0\f0\fs22 ________________________________________________________________\par
+Problem 4:\par
+\cf1\highlight2\f1\fs19 select\cf3  dname\cf4 ,\cf3 dnum\cf4 ,\cf5 count\cf1  \cf4 (\cf3 SSN\cf4 )\cf3  No_Employees\par
+\cf1 from\cf3  Departments\cf4 ,\cf3 employee\par
+\cf1 where\cf3  Dno\cf4 =\cf3 Dnum\par
+\cf1 group\cf3  \cf1 by\cf3  dname\cf4 ,\cf3 dnum\par
+\cf1 having\cf3  \cf5 avg\cf4 (\cf5 isnull\cf1  \cf4 (\cf3 salary\cf4 ,\cf3 0\cf4 ))\cf3  \cf4 <(\cf1 SELECT\cf3  \cf5 avg\cf4 (\cf5 isnull\cf1  \cf4 (\cf3 salary\cf4 ,\cf3 0\cf4 ))\cf3  \cf1 FROM\cf3  EMPLOYEE\cf4 )\par
+\par
+\cf0\highlight0\f0\fs22 ________________________________________________________________\par
+Problem 5:\par
+\par
+\cf1\highlight2\f1\fs19 select\cf3  salary\par
+\cf1 from\cf3  employee\par
+\cf1 where\cf3  salary \cf4 in\cf1  \cf4 (\cf1 select\cf3  \cf1 top\cf4 (\cf3 2\cf4 )\cf3  salary \cf1 from\cf3  employee \cf1 order\cf3  \cf1 by\cf3  salary \cf1 DESC\cf4 )\cf3  \par
+\par
+\cf0\highlight0\f0\fs22 ________________________________________________________________\par
+Problem 6:\par
+\cf1\highlight2\f1\fs19 select\cf3  fname\cf4 +\cf6 ' '\cf4 +\cf3 lname \cf6 'Full Name'\cf3\par
+\cf1 from\cf3  employee E \cf4 join\cf3  \cf1 Dependent\cf3  D\par
+\cf1 on\cf3  E\cf4 .\cf3 SSN\cf4 =\cf3 D\cf4 .\cf3 ESSN\par
+\cf1 where\cf3  fname\cf4 +\cf6 ' '\cf4 +\cf3 lname \cf4 =\cf3  D\cf4 .\cf3 Dependent_name\par
+\par
+\cf0\highlight0\f0\fs22 ________________________________________________________________\par
+Problem 7:\par
+\cf1\highlight2\f1\fs19 insert\cf3  \cf1 into\cf3  employee\cf1  \cf4 (\cf3 fname\cf4 ,\cf3 lname\cf4 ,\cf3 bdate\cf4 ,\cf1 address\cf4 ,\cf3 sex\cf4 ,\cf3 dno\cf4 ,\cf3 SSN\cf4 ,\cf3 Superssn\cf4 ,\cf3 salary\cf4 )\cf3  \cf1 values \cf4 (\cf6 'karim'\cf4 ,\cf6 'ehab'\cf4 ,\cf6 '6-2-2002'\cf4 ,\cf6 'nasr city'\cf4 ,\cf6 'M'\cf4 ,\cf3 30\cf4 ,\cf3 102672\cf4 ,\cf3 112233\cf4 ,\cf3 3000\cf4 )\cf3\par
+\par
+\cf1 commit\par
+\cf0\highlight0\f0\fs22 ________________________________________________________________\par
+Problem 8:\par
+\cf1\highlight2\f1\fs19 insert\cf3  \cf1 into\cf3  employee\cf1  \cf4 (\cf3 fname\cf4 ,\cf3 lname\cf4 ,\cf3 bdate\cf4 ,\cf1 address\cf4 ,\cf3 sex\cf4 ,\cf3 dno\cf4 ,\cf3 SSN\cf4 )\cf3  \cf1 values \cf4 (\cf6 'emad'\cf4 ,\cf6 'ehab'\cf4 ,\cf6 '11-2-2002'\cf4 ,\cf6 'nasr city'\cf4 ,\cf6 'M'\cf4 ,\cf3 30\cf4 ,\cf3 102660\cf4 )\cf3\par
+\par
+\cf1 commit\par
+\par
+\cf0\highlight0\f0\fs22 ________________________________________________________________\par
+Problem 9:\par
+\cf5\highlight2\f1\fs19 update\cf3  employee\par
+\cf1 set\cf3  salary \cf4 =\cf3 salary\cf4 +(\cf3 salary\cf4 *\cf3 0.2\cf4 )\cf3\par
+\cf1 where\cf3  SSN\cf4 =\cf3  102672\par
+\par
+\cf1 commit\par
+\cf0\highlight0\f0\fs22 ________________________________________________________________\par
+Problem 10:\par
+\cf1\highlight2\f1\fs19 insert\cf3  \cf1 into\cf3  Departments \cf1 values \cf4 (\cf6 'DEPT_IT'\cf4 ,\cf3 100\cf4 ,\cf3 112233\cf4 ,\cf6 '1-11-2006'\cf4 )\cf0\highlight0\f0\fs22\par
+________________________________________________________________\par
+Problem 11:\par
+\cf7\highlight2\f1\fs19 --A\cf3\par
+\par
+\cf5 update\cf3  Departments\par
+\cf1 set\cf3  mgrssn\cf4 =\cf3 968574\par
+\cf1 where\cf3  dnum\cf4 =\cf3 100\par
+\par
+\par
+\cf7 --B\cf3\par
+\cf5 update\cf3  Departments\par
+\cf1 set\cf3  mgrssn\cf4 =\cf3 102672\par
+\cf1 where\cf3  dnum\cf4 =\cf3 20\par
+\par
+\cf7 --C\cf3\par
+\cf5 update\cf3  Employee\par
+\cf1 set\cf3  Superssn\cf4 =\cf3 102672\par
+\cf1 where\cf3  SSN\cf4 =\cf3 102660\par
+\par
+\cf1 commit\cf0\highlight0\f0\fs22\par
+\par
+________________________________________________________________\par
+Problem 12:\par
+\cf7\highlight2\f1\fs19 --im taking his department\cf3\par
+\cf5 update\cf3  Departments \par
+\cf1 set\cf3  MGRSSN\cf4 =\cf3  102672\par
+\cf1 where\cf3  MGRSSN\cf4 =\cf3 223344\par
+\par
+\cf7 --im taking his supervision on employees\cf3\par
+\cf5 update\cf3  Employee \par
+\cf1 set\cf3  Superssn\cf4 =\cf3  102672\par
+\cf1 where\cf3  Superssn\cf4 =\cf3 223344\par
+\par
+\cf7 --im taking his projects\cf3\par
+\cf5 update\cf3  Works_for \par
+\cf1 set\cf3  ESSN\cf4 =\cf3  102672\par
+\cf1 where\cf3  ESSN\cf4 =\cf3 223344\par
+\par
+\cf7 --remove his dependents\cf3\par
+\cf1 delete\cf3  \cf1 from\cf3  \cf1 Dependent\cf3\par
+\cf1 where\cf3  Essn\cf4 =\cf3 223344\par
+\par
+\par
+\par
+\cf7 --remove him from the company\cf3\par
+\cf1 delete\cf3  \cf1 from\cf3  employee\par
+\cf1 where\cf3  ssn\cf4 =\cf3 223344\par
+\par
+\cf1 commit\cf3\par
+\cf0\highlight0\f0\fs22 ________________________________________________________________\par
+Problem 13:\par
+\cf5\highlight2\f1\fs19 update\cf3  employee \par
+\cf1 set\cf3  salary\cf4 =\cf3 salary\cf4 +(\cf3 salary\cf4 *\cf3 0.3\cf4 )\cf3\par
+\cf1 where\cf3  SSN \cf4 in\cf1  \cf4 (\cf1 select\cf3  ESSN \cf1 from\cf3  Works_for\par
+\tab\tab\tab\tab\cf1 where\cf3  Pno\cf4 =(\cf1 select\cf3  pnumber \cf1 from\cf3  Project\par
+\tab\tab\tab\tab\cf1 where\cf3  Pname \cf4 =\cf3  \cf6 'Al Rabwah'\cf4 ))\cf3\par
+\par
+\tab\tab\tab\tab\cf1 commit\par
+\par
+\cf0\highlight0\f0\fs22 ________________________________________________________________\par
+Problem 14:\par
+\cf1\highlight2\f1\fs19 select\cf3  SSN\cf4 ,\cf3  Fname \cf4 +\cf6 ' '\cf4 +\cf3 Lname \cf6 'Full Name'\cf3\par
+\cf1 from\cf3  Employee\par
+\cf1 where\cf3  \cf4 exists\cf1  \cf4 (\cf1 select\cf3  \cf4 *\cf3  \cf1 from\cf3  employee E\cf4 ,\cf1 Dependent\cf3  D \par
+\tab\tab\tab\tab\cf1 where\cf3  E\cf4 .\cf3 SSN \cf4 =\cf3 D\cf4 .\cf3 ESSN\cf4 )\cf0\highlight0\f0\fs22\par
+________________________________________________________________\par
+Problem 15:\par
+\cf1\highlight2\f1\fs19 select\cf3  Fname \cf4 +\cf6 ' '\cf4 +\cf3 Lname \cf6 'Full Name'\cf3  \cf4 ,\cf3  pname \cf4 ,\cf3 p\cf4 .\cf3 dnum\par
+\cf1 from\cf3  Employee E \cf4 join\cf3  Departments D\par
+\cf1 on\cf3  E\cf4 .\cf3 Dno\cf4 =\cf3 D\cf4 .\cf3 Dnum\par
+\cf4 join\cf3  Project P\par
+\cf1 on\cf3  D\cf4 .\cf3 Dnum\cf4 =\cf3 p\cf4 .\cf3 Dnum\par
+\cf1 order\cf3  \cf1 by\cf3  p\cf4 .\cf3 Dnum \cf4 ,\cf3 Lname\cf4 ,\cf3 Fname\cf0\highlight0\f0\fs22\par
+\cf3\highlight2\f1\fs19\par
+\par
+\par
+\cf0\highlight0\f0\fs22\par
+\par
+\par
+\cf3\highlight2\f1\fs19\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\cf0\highlight0\f0\fs22\par
+\cf3\highlight2\f1\fs19\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\cf0\highlight0\f0\fs22\par
+\cf3\highlight2\f1\fs19\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\cf0\highlight0\f0\fs22\par
+\cf3\highlight2\f1\fs19\par
+\par
+\par
+\par
+\par
+\par
+\cf0\highlight0\f0\fs22\par
+\par
+}
+ 
