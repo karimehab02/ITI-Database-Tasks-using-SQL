@@ -1,0 +1,164 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil Cascadia Mono;}{\f1\fnil\fcharset0 Cascadia Mono;}{\f2\fnil\fcharset0 Calibri;}}
+{\colortbl ;\red0\green128\blue0;\red255\green255\blue255;\red0\green0\blue0;\red0\green0\blue255;\red128\green128\blue128;\red255\green0\blue0;\red128\green0\blue0;\red255\green0\blue255;\red0\green255\blue0;}
+{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\cf1\highlight2\f0\fs19\lang9 ---------------------Question 1-----------------------------------\cf3\par
+\cf4 create\cf3  \cf4 database\cf3  Company2\par
+\par
+\cf4 create\cf3  \cf4 table\cf3  Department\cf5 (\cf3\par
+DeptNo \cf4 int\cf5 ,\cf3 DeptName \cf4 varchar\cf5 (\cf3 30\cf5 ),\cf4 Location\cf3  \cf4 varchar\cf5 (\cf3 20\cf5 )\cf3\par
+\cf5 ,\cf4 constraint\cf3  dpk \cf4 primary\cf3  \cf4 key\cf5 (\cf3 DeptNo\cf5 )\cf3\par
+\par
+\cf5 )\cf3\par
+\par
+\cf4 create\cf3  \cf4 rule\cf3  range_rule \par
+\cf4 as\cf3  @range \cf5 in\cf4  \cf5 (\cf6 'NY'\cf5 ,\cf6 'DS'\cf5 ,\cf6 'KW'\cf5 );\cf3\par
+\cf7 sp_bindrule\cf3  \cf6 'range_rule'\cf5 ,\cf6 'dbo.department.Location'\cf3\par
+\par
+\par
+\par
+\cf4 insert\cf3  \cf4 into\cf3  Department\par
+\cf4 values\cf5 (\cf6 '2'\cf5 ,\cf6 'Accounting'\cf5 ,\cf6 'DS'\cf5 ),\cf3\par
+\cf5 (\cf6 '3'\cf5 ,\cf6 'Marketing'\cf5 ,\cf6 'KW'\cf5 )\cf3\par
+\par
+\cf1 -------------------------------------------------------\cf3\par
+\cf4 create\cf3  \cf4 table\cf3  Employee\cf5 (\cf3\par
+EmpNo \cf4 int\cf5 ,\cf3 EmpFname \cf4 varchar\cf5 (\cf3 30\cf5 )\cf3  \cf5 NOT\cf3  \cf5 NULL,\cf3 EmpLname \cf4 varchar\cf5 (\cf3 30\cf5 )\cf3  \cf5 NOT\cf3  \cf5 NULL,\cf3 DeptNo \cf4 int\cf5 ,\cf3 Salary \cf4 int\cf3  \cf4 unique\cf3\par
+\cf5 ,\cf4 constraint\cf3  epk \cf4 primary\cf3  \cf4 key\cf5 (\cf3 EmpNo\cf5 )\cf3\par
+\cf5 ,\cf4 constraint\cf3  dfk \cf4 foreign\cf3  \cf4 key\cf5 (\cf3 DeptNo\cf5 )\cf3  \cf4 references\cf3  Department\cf5 (\cf3 DeptNo\cf5 )\cf3\par
+\par
+\cf5 )\cf3\par
+\par
+\cf4 create\cf3  \cf4 rule\cf3  r_rule\par
+\cf4 as\cf3  @rangee \cf5 <\cf3  6000\par
+\par
+\cf7 sp_bindrule\cf3  \cf6 'r_rule'\cf5 ,\cf6 'dbo.Employee.Salary'\cf3\par
+\par
+\cf4 insert\cf3  \cf4 into\cf3  Employee\par
+\cf4 values\cf5 (\cf6 '25348'\cf5 ,\cf6 'Mathew'\cf5 ,\cf6 'Smith'\cf5 ,\cf6 '3'\cf5 ,\cf6 '2500'\cf5 )\cf3\par
+\cf5 ,(\cf6 '10102'\cf5 ,\cf6 'Ann'\cf5 ,\cf6 'Jones'\cf5 ,\cf6 '3'\cf5 ,\cf6 '3000'\cf5 )\cf3\par
+\cf5 ,(\cf6 '18316'\cf5 ,\cf6 'John'\cf5 ,\cf6 'Barrimore'\cf5 ,\cf6 '1'\cf5 ,\cf6 '2400'\cf5 )\cf3\par
+\cf5 ,(\cf6 '29346'\cf5 ,\cf6 'James'\cf5 ,\cf6 'James'\cf5 ,\cf6 '2'\cf5 ,\cf6 '2800'\cf5 )\cf3\par
+\cf5 ,(\cf6 '9031'\cf5 ,\cf6 'Lisa'\cf5 ,\cf6 'Bertoni'\cf5 ,\cf6 '2'\cf5 ,\cf6 '4000'\cf5 )\cf3\par
+\cf5 ,(\cf6 '2581'\cf5 ,\cf6 'Elisa'\cf5 ,\cf6 'Hansel'\cf5 ,\cf6 '2'\cf5 ,\cf6 '3600'\cf5 )\cf3\par
+\cf5 ,(\cf6 '28559'\cf5 ,\cf6 'Sybl'\cf5 ,\cf6 'Moser'\cf5 ,\cf6 '1'\cf5 ,\cf6 '2900'\cf5 )\cf3\par
+\par
+\cf1 -----------------------------------------------------------\cf3\par
+\cf4 create\cf3  \cf4 table\cf3  Project\cf5 (\cf3\par
+ProjectNo \cf4 varchar\cf5 (\cf3 10\cf5 ),\cf3 ProjectName \cf4 varchar\cf5 (\cf3 20\cf5 )\cf3  \cf5 NOT\cf3  \cf5 NULL,\cf3 Budget \cf4 int\cf3\par
+\cf5 ,\cf4 constraint\cf3  ppk \cf4 primary\cf3  \cf4 key\cf5 (\cf3 ProjectNo\cf5 )\cf3\par
+\cf5 )\cf3\par
+\par
+\cf1 -----------------------------------------------------------\cf3\par
+\cf4 create\cf3  \cf4 Table\cf3  Works_on\cf5 (\cf3\par
+EmpNo \cf4 int\cf3  \cf5 NOT\cf3  \cf5 NULL,\cf3 ProjectNo \cf4 varchar\cf5 (\cf3 10\cf5 )\cf3  \cf5 NOT\cf3  \cf5 NULL,\cf3 Job \cf4 varchar\cf5 (\cf3 20\cf5 )\cf3\par
+\cf5 ,\cf3 Enter_Datdate \cf5 NOT\cf3  \cf5 NULL\cf3  \cf4 DEFAULT\cf5 (\cf8 GETDATE\cf5 ())\cf3\par
+\cf5 ,\cf4 constraint\cf3  eppk \cf4 primary\cf3  \cf4 key\cf5 (\cf3 EmpNo\cf5 ,\cf3 ProjectNo\cf5 )\cf3\par
+\cf5 ,\cf4 constraint\cf3  efk \cf4 foreign\cf3  \cf4 key\cf5 (\cf3 EmpNo\cf5 )\cf3  \cf4 references\cf3  Employee\cf5 (\cf3 EmpNo\cf5 )\cf3\par
+\cf5 ,\cf4 constraint\cf3  pfk \cf4 foreign\cf3  \cf4 key\cf5 (\cf3 ProjectNo\cf5 )\cf3  \cf4 references\cf3  Project\cf5 (\cf3 ProjectNo\cf5 )\cf3\par
+\cf5 )\cf3\par
+\par
+\cf1 ------------------------------------------------------ Testing Integrity\cf3\par
+\par
+\cf1 --Cannot insert null value in ProjectNo\cf3\par
+\cf4 insert\cf3  \cf4 into\cf3  Works_on\cf5 (\cf3 EmpNo\cf5 )\cf3\par
+\cf4 values\cf5 (\cf6 '11111'\cf5 )\cf3\par
+\par
+\cf1 -----------------------------------------------------------\cf3\par
+\par
+\cf1 --failed because its FK\cf3\par
+\cf8 update\cf3  Works_on\par
+\cf4 Set\cf3  EmpNo\cf5 =\cf3 11111\par
+\cf4 where\cf3  empno\cf5 =\cf3 10102\par
+\par
+\cf1 ----------------------------------------------------------\cf3\par
+\par
+\cf1 --cannot update PK because there are FKs points on it\cf3\par
+\cf8 update\cf3  Employee\par
+\cf4 Set\cf3  EmpNo\cf5 =\cf3 22222\par
+\cf4 where\cf3  empno\cf5 =\cf3 10102\par
+\par
+\cf1 ----------------------------------------------------------\cf3\par
+\par
+\cf1 --cannot delete pk because there are FKs Points to it\cf3\par
+\cf4 Delete\cf3  \cf4 from\cf3  Employee\par
+\cf4 where\cf3  empno\cf5 =\cf3 10102\par
+\par
+\cf1 --------------------------------------------------- Table Modifications\cf3\par
+\par
+\cf4 alter\cf3  \cf4 table\cf3  Employee\par
+\cf4 add\cf3  TelephoneNumber \cf4 int\cf3  \par
+\par
+\par
+\cf4 alter\cf3  \cf4 table\cf3  employee\par
+\cf4 drop\cf3  \cf4 Column\cf3  TelephoneNumber\par
+\par
+\par
+\cf1 --------------------\f1\lang1033 ----\f0\lang9 ---Question\f1\lang1033 2\f0\lang9 ------------------------------------\cf3\par
+\par
+\cf4 create\cf3  \cf4 schema\cf3  Company\par
+\par
+\cf4 alter\cf3  \cf4 schema\cf3  Company \cf4 transfer\cf3  dbo\cf5 .\cf3 Department\par
+\cf4 alter\cf3  \cf4 schema\cf3  Company \cf4 transfer\cf3  dbo\cf5 .\cf3 Project\par
+\par
+\cf4 create\cf3  \cf4 schema\cf3  Human_Resource\par
+\par
+\cf4 alter\cf3  \cf4 schema\cf3  Human_Resource \cf4 transfer\cf3  dbo\cf5 .\cf3 Employee\par
+\par
+\cf1 --------------------\f1\lang1033 ----\f0\lang9 ---Question\f1\lang1033 3\f0\lang9 ------------------------------------\cf3\par
+\cf4 SELECT\cf3  \par
+    CONSTRAINT_NAME\cf5 ,\cf3\par
+    CONSTRAINT_TYPE\par
+\cf4 FROM\cf3  \cf9 INFORMATION_SCHEMA\cf5 .\cf9 TABLE_CONSTRAINTS\cf3\par
+\cf4 WHERE\cf3  TABLE_NAME \cf5 =\cf3  \cf6 'Employee'\cf3\par
+\cf1 --------------------\f1\lang1033 ----\f0\lang9 ---Question\f1\lang1033 4\f0\lang9 ------------------------------------\cf3\par
+\par
+\cf4 create\cf3  \cf4 synonym\cf3  Emp\par
+\cf4 for\cf3  Human_Resource\cf5 .\cf3 Employee\par
+\par
+\cf4 Select\cf3  \cf5 *\cf3\par
+\cf4 from\cf3  Employee\tab\tab\tab\tab\tab\cf1 --Won't run cause employee table not in dbo\cf3\par
+\par
+\cf4 Select\cf3  \cf5 *\cf3  \par
+\cf4 from\cf3  [Human_Resource]\cf5 .\cf3 Employee  \cf1 --RUN\cf3\par
+\par
+\cf4 Select\cf3  \cf5 *\cf3\par
+\cf4 from\cf3  Emp\tab\tab\tab\tab\tab\tab\cf1 --RUN\cf3\par
+\par
+\cf4 Select\cf3  \cf5 *\cf3  \par
+\cf4 from\cf3  [Human_Resource]\cf5 .\cf3 Emp\tab   \cf1 --Invalid Object name\cf3\par
+\par
+\cf1 --------------------\f1\lang1033 ----\f0\lang9 ---Question\f1\lang1033 5\f0\lang9 ------------------------------------\cf3\par
+\par
+\cf8 update\cf3  Company\cf5 .\cf3 Project\par
+\cf4 set\cf3  budget\cf5 =\cf3 budget\cf5 +\cf3 budget\cf5 *\cf3 0.1\par
+\cf4 where\cf3  projectno \cf5 in\cf4  \cf5 (\cf4 select\cf3  P\cf5 .\cf3 ProjectNo \cf4 from\cf3  Company\cf5 .\cf3 Project P \cf5 join\cf3  Works_on W\par
+\tab\tab\tab\tab\tab\cf4 on\cf3  P\cf5 .\cf3 ProjectNo\cf5 =\cf3 W\cf5 .\cf3 ProjectNo \cf5 join\cf3  Emp \par
+\tab\tab\tab\tab\tab\cf4 on\cf3  W\cf5 .\cf3 EmpNo\cf5 =\cf3 Emp\cf5 .\cf3 EmpNo\cf5 )\cf3\par
+\par
+\cf1 --------------------\f1\lang1033 ----\f0\lang9 ---Question\f1\lang1033 6\f0\lang9 ------------------------------------\cf3\par
+\par
+\cf8 update\cf3  Company\cf5 .\cf3 Department \par
+\cf4 set\cf3  DeptName\cf5 =\cf6 'Sales'\cf3\par
+\cf4 where\cf3  DeptNo \cf5 =\cf4  \cf5 (\cf4 select\cf3  DeptNo \cf4 from\cf3  Emp\par
+\tab\tab\tab\tab\cf4 where\cf3  Emp\cf5 .\cf3 EmpFname\cf5 =\cf6 'James'\cf3\par
+\tab\tab\tab\tab\cf5 )\cf3\par
+\par
+\cf1 --------------------\f1\lang1033 ----\f0\lang9 ---Question\f1\lang1033 7\f0\lang9 ------------------------------------\cf3\par
+\par
+\cf8 update\cf3  Works_on\par
+\cf4 set\cf3  Enter_Date \cf5 =\cf3  \cf6 '12.12.2006'\cf3\par
+\cf4 where\cf3  ProjectNo \cf5 =\cf3  \cf6 '1'\cf3  \cf5 and\cf3  EmpNo \cf5 in\cf4  \cf5 (\cf4 select\cf3  E\cf5 .\cf3 EmpNo \cf4 from\cf3  Emp E\cf5 ,\cf3  Company\cf5 .\cf3 Department D\par
+\cf4 where\cf3  E\cf5 .\cf3 DeptNo\cf5 =\cf3 d\cf5 .\cf3 DeptNo \cf5 and\cf3  D\cf5 .\cf3 DeptName\cf5 =\cf6 'Sales'\cf5 )\cf3\par
+\par
+\cf1 --------------------\f1\lang1033 ----\f0\lang9 ---Question8------------------------------------\cf3\par
+\par
+\cf4 Delete\cf3  W \cf4 From\cf3\par
+Works_on W \par
+\cf5 join\cf3  Emp E\par
+\cf4 on\cf3  W\cf5 .\cf3 Empno\cf5 =\cf3 E\cf5 .\cf3 Empno \par
+\cf5 join\cf3  Company\cf5 .\cf3 Department D\par
+\cf4 on\cf3  E\cf5 .\cf3 deptno\cf5 =\cf3 D\cf5 .\cf3 deptno\par
+\cf4 where\cf3  D\cf5 .\cf4 Location\cf3  \cf5 =\cf6 'KW'\cf3\par
+\cf0\highlight0\f2\fs22\par
+}
+ 

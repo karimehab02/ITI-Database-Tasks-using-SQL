@@ -1,0 +1,29 @@
+0 Normal:
+Employee(Emp-No,Emp_name,Dept,DeptManager,Proj_id,Proj_date,Location,Weeks_on_project)
+
+
+1 Normal:
+
+Employee(Emp-No PK,Emp_name,Dept,DeptManager)
+Project((Proj_id,Emp_no FK)PK,Proj_date,Location,Weeks_on_project)
+
+2 Normal:
+
+Employee(Emp-No PK,Emp_name,Dept,DeptManager)
+
+Project(Proj_id PK,Proj_date,Location)
+
+Emp_Proj((Proj_id FK,Emp_no FK)PK,Weeks_on_project)
+
+
+3 Normal :
+
+Employee(Emp_No PK,Emp_name,Dept FK)
+
+Department(Dept,DeptManager)
+
+Project(Proj_id PK,Proj_date,Location)
+
+Emp_Proj((Proj_id FK,Emp_no FK)PK,Weeks_on_project)
+
+

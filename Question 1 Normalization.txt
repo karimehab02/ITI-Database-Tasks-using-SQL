@@ -1,0 +1,32 @@
+0 Normal : 
+
+Department(Deptno,Dept_name,Location,Mgr_name,Mgr_id
+,Tel_ext,Custno,Cust_name,Date_complain,Nature_complaint)
+
+
+1 Normal :
+
+Department(Deptno pk,Dept_name,Location,Mgr_name,Mgr_id
+,Tel_ext)
+
+Customer(Custno ,Deptno fk)pk,Cust_name,Date_complain,Nature_complaint)
+
+
+2 Normal :
+
+Department(Deptno pk,Dept_name,Location,Mgr_name,Mgr_id
+,Tel_ext)
+
+Customer (Custno PK ,Cust_name)
+
+Cust_Dept(Custno FK ,Deptno fk)pk,Date_complain,Nature_complaint)
+
+3 Normal :
+
+Department(Deptno pk,Dept_name,Location,Mgr_id FK)
+
+MGR(Mgr_id PK,Mgr_name,Tel_ext)
+
+Customer (Custno PK ,Cust_name)
+
+Cust_Dept(Custno FK ,Deptno fk)pk,Date_complain,Nature_complaint)
